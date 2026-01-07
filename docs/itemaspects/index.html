@@ -98,6 +98,8 @@ const myTheme = agGrid.themeQuartz
     loadCSV(e.target.value)
   })
 
+
+
   loadCSV('2.8.4.csv')
   async function loadCSV(filename) {
     fetch(filename)
@@ -111,7 +113,13 @@ const myTheme = agGrid.themeQuartz
             const data = results.data;
             const columns = Object.keys(data[0]).map((key, index) => ({
               field: key,
-              width: index === 0 ? 500 : 125
+              width: index === 0 ? 500 : 125,
+              cellDataType: index === 0 ? 'text' : 'number',
+              valueFormatter: p => {
+                if(p.value === null || p.value === undefined) {
+                    return '';
+                    }
+              }
             }));
 
             gridApi.setGridOption('columnDefs', columns);
