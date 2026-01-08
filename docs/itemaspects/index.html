@@ -108,7 +108,8 @@ const myTheme = agGrid.themeQuartz
         Papa.parse(csvText, {
           header: true,
           skipEmptyLines: true,
-          delimeter: ';',
+          delimiter: ';',
+          dynamicTyping: true,
           complete: function(results) {
             const data = results.data;
             const columns = Object.keys(data[0]).map((key, index) => ({
